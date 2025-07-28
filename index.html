@@ -1,17 +1,1044 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>project_template_react</title>
+    <title>王兆钰 - SLAM算法工程师</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'inter': ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              'tech-blue': '#0066FF',
+              'tech-purple': '#6366F1',
+              'tech-cyan': '#06B6D4',
+              'tech-dark': '#0F172A',
+              'tech-gray': '#1E293B',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'slide-up': 'slideUp 0.8s ease-out forwards',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+            },
+            backdropBlur: {
+              'xs': '2px',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        font-weight: 400;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        background: #0F172A;
+        color: #F8FAFC;
+      }
+      
+      .tech-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .tech-gradient-2 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      
+      .tech-gradient-3 {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .tech-card {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        transition: all 0.3s ease;
+      }
+      
+      .tech-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+      }
+      
+      .neon-text {
+        text-shadow: 0 0 10px rgba(99, 102, 241, 0.8),
+                     0 0 20px rgba(99, 102, 241, 0.6),
+                     0 0 40px rgba(99, 102, 241, 0.4);
+      }
+      
+      .tech-border {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .tech-border::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.4), transparent);
+        transition: left 0.5s;
+      }
+      
+      .tech-border:hover::before {
+        left: 100%;
+      }
+      
+      .particle-bg {
+        background-image: 
+          radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 40% 80%, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+        background-size: 100px 100px, 120px 120px, 80px 80px;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      
+      @keyframes slideUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes glow {
+        from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+        to { box-shadow: 0 0 30px rgba(99, 102, 241, 0.6), 0 0 40px rgba(99, 102, 241, 0.3); }
+      }
+      
+      .animate-bounce {
+        animation: bounce 1s infinite;
+      }
+      
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(-25%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+      
+      /* 滚动条样式 */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #1E293B;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #6366F1, #06B6D4);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #4F46E5, #0891B2);
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="font-inter">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <div class="flex items-center">
+            <div class="text-2xl font-bold neon-text">王兆钰</div>
+            <div class="ml-3 text-sm text-tech-cyan">SLAM Engineer</div>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-gray-300 hover:text-tech-purple transition-colors">首页</a>
+            <a href="#about" class="text-gray-300 hover:text-tech-purple transition-colors">关于</a>
+            <a href="#experience" class="text-gray-300 hover:text-tech-purple transition-colors">经历</a>
+            <a href="#skills" class="text-gray-300 hover:text-tech-purple transition-colors">技能</a>
+            <a href="#publications" class="text-gray-300 hover:text-tech-purple transition-colors">论文</a>
+            <a href="#contact" class="text-gray-300 hover:text-tech-purple transition-colors">联系</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="min-h-screen bg-tech-dark particle-bg">
+      <!-- 主页英雄区 -->
+      <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景动态元素 -->
+        <div class="absolute inset-0 z-0">
+          <!-- 主背景图片 -->
+          <div class="absolute inset-0">
+            <img 
+              src="https://lf-code-agent.coze.cn/obj/x-ai-cn/attachment/3238509548145116/image_20250726100024.png" 
+              alt="个人照片" 
+              class="w-full h-full object-cover opacity-30"
+            />
+          </div>
+          
+          <!-- 科技感网格背景 -->
+          <div class="absolute inset-0 bg-gradient-to-br from-tech-dark via-tech-gray to-tech-dark opacity-90"></div>
+          
+          <!-- 浮动的几何图形 -->
+          <div class="absolute top-20 left-20 w-32 h-32 border border-tech-purple/30 rotate-45 animate-float"></div>
+          <div class="absolute top-40 right-32 w-24 h-24 border border-tech-cyan/30 rounded-full animate-pulse-slow"></div>
+          <div class="absolute bottom-32 left-40 w-16 h-16 bg-tech-purple/20 rotate-12 animate-float" style="animation-delay: 2s;"></div>
+          <div class="absolute bottom-20 right-20 w-20 h-20 border-2 border-tech-cyan/40 rounded-full animate-pulse-slow" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <!-- 主要内容 -->
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <!-- 标题区域 -->
+          <div class="mb-8 animate-slide-up">
+            <div class="inline-block px-4 py-2 bg-tech-purple/20 border border-tech-purple/30 rounded-full mb-6">
+              <span class="text-tech-cyan text-sm font-medium">🚀 SLAM Algorithm Engineer</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
+              <span class="neon-text">王兆钰</span>
+            </h1>
+            <div class="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
+              机器人<span class="text-tech-cyan">导航定位</span>算法专家
+            </div>
+          </div>
+          
+          <!-- 描述文字 -->
+          <div class="max-w-4xl mx-auto mb-12 animate-fade-in" style="animation-delay: 0.3s;">
+            <p class="text-xl text-gray-300 leading-relaxed mb-6">
+              上海交通大学<span class="text-tech-purple font-semibold">物理与天文学院博士</span>
+            </p>
+            <p class="text-lg text-gray-400 leading-relaxed">
+              专注于机器人SLAM算法与多传感器融合技术，拥有丰富的算法研发与工程实践经验
+            </p>
+          </div>
+          
+          <!-- 技术标签 -->
+          <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in" style="animation-delay: 0.6s;">
+            <span class="px-4 py-2 bg-tech-purple/20 border border-tech-purple/40 rounded-full text-tech-purple text-sm font-medium">
+              VINS-MONO
+            </span>
+            <span class="px-4 py-2 bg-tech-cyan/20 border border-tech-cyan/40 rounded-full text-tech-cyan text-sm font-medium">
+              Cartographer
+            </span>
+            <span class="px-4 py-2 bg-tech-purple/20 border border-tech-purple/40 rounded-full text-tech-purple text-sm font-medium">
+              多传感器融合
+            </span>
+            <span class="px-4 py-2 bg-tech-cyan/20 border border-tech-cyan/40 rounded-full text-tech-cyan text-sm font-medium">
+              ROS开发
+            </span>
+          </div>
+          
+          <!-- CTA按钮 -->
+          <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="animation-delay: 0.9s;">
+            <a 
+              href="#about" 
+              class="group px-8 py-4 bg-gradient-to-r from-tech-purple to-tech-cyan text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl tech-border animate-glow"
+            >
+              <span class="flex items-center justify-center">
+                <i class="fas fa-rocket mr-2"></i>
+                探索我的技术世界
+              </span>
+            </a>
+            <a 
+              href="#contact" 
+              class="px-8 py-4 bg-transparent border-2 border-tech-purple hover:bg-tech-purple/10 text-white font-semibold rounded-lg transition-all duration-300 tech-border"
+            >
+              <span class="flex items-center justify-center">
+                <i class="fas fa-envelope mr-2"></i>
+                联系合作
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 向下滚动指示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-tech-cyan animate-bounce">
+          <div class="flex flex-col items-center">
+            <span class="text-xs mb-2 opacity-70">向下滚动</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 关于我部分 -->
+      <section id="about" class="py-24 bg-tech-gray/50 relative overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0 particle-bg opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20">
+            <div class="inline-block px-6 py-3 bg-tech-purple/20 border border-tech-purple/30 rounded-full mb-8">
+              <span class="text-tech-cyan text-sm font-medium uppercase tracking-wider">About Me</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">
+              关于<span class="text-tech-purple">我</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-tech-purple to-tech-cyan mx-auto"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- 左侧内容 -->
+            <div class="space-y-8">
+              <div class="tech-card rounded-2xl p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-user-astronaut text-white text-xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white">个人简介</h3>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  我是王兆钰，一名专注于<span class="text-tech-cyan font-semibold">SLAM算法研发</span>的工程师。拥有上海交通大学物理与天文学院博士学位，在机器人导航与定位、多传感器融合等领域有着深入的研究和丰富的实践经验。
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                  我热衷于将前沿的理论研究转化为实际可用的工程解决方案，致力于推动<span class="text-tech-purple font-semibold">机器人技术</span>在各个领域的应用和发展。
+                </p>
+              </div>
+              
+              <!-- 核心能力 -->
+              <div class="tech-card rounded-2xl p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-brain text-white text-xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white">核心能力</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-check-circle mr-3 text-tech-cyan"></i>
+                    <span>算法设计与优化</span>
+                  </div>
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-check-circle mr-3 text-tech-purple"></i>
+                    <span>多传感器融合</span>
+                  </div>
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-check-circle mr-3 text-tech-cyan"></i>
+                    <span>实时系统开发</span>
+                  </div>
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-check-circle mr-3 text-tech-purple"></i>
+                    <span>机器人系统集成</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 联系信息 -->
+              <div class="tech-card rounded-2xl p-8">
+                <div class="flex items-center mb-6">
+                  <div class="w-12 h-12 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-address-card text-white text-xl"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold text-white">联系方式</h3>
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-envelope mr-4 text-tech-cyan"></i>
+                    <span>wzyqq@mail.ustc.edu.cn</span>
+                  </div>
+                  <div class="flex items-center text-gray-300">
+                    <i class="fas fa-map-marker-alt mr-4 text-tech-purple"></i>
+                    <span>上海市</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 右侧头像和统计 -->
+            <div class="text-center space-y-8">
+              <!-- 头像容器 -->
+              <div class="relative">
+                <div class="w-80 h-80 mx-auto relative">
+                  <!-- 外圈装饰 -->
+                  <div class="absolute inset-0 rounded-full border-4 border-tech-purple animate-pulse-slow"></div>
+                  <div class="absolute inset-2 rounded-full border-2 border-tech-cyan animate-pulse-slow" style="animation-delay: 1s;"></div>
+                  
+                  <!-- 头像 -->
+                  <img 
+                    src="https://lf-code-agent.coze.cn/obj/x-ai-cn/attachment/3238509548145116/image_20250726100024.png" 
+                    alt="王兆钰" 
+                    class="w-full h-full object-cover rounded-full relative z-10"
+                  />
+                  
+                  <!-- 浮动元素 -->
+                  <div class="absolute -top-4 -right-4 w-8 h-8 bg-tech-purple rounded-full animate-bounce"></div>
+                  <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-tech-cyan rounded-full animate-float"></div>
+                </div>
+              </div>
+              
+              <!-- 成就统计 -->
+              <div class="grid grid-cols-3 gap-6">
+                <div class="tech-card rounded-xl p-6 text-center">
+                  <div class="text-3xl font-bold text-tech-purple mb-2">6+</div>
+                  <div class="text-gray-400 text-sm">年工程经验</div>
+                </div>
+                <div class="tech-card rounded-xl p-6 text-center">
+                  <div class="text-3xl font-bold text-tech-cyan mb-2">3+</div>
+                  <div class="text-gray-400 text-sm">学术论文</div>
+                </div>
+                <div class="tech-card rounded-xl p-6 text-center">
+                  <div class="text-3xl font-bold text-tech-purple mb-2">10+</div>
+                  <div class="text-gray-400 text-sm">项目经验</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 教育背景与工作经历 -->
+      <section id="experience" class="py-24 bg-tech-dark relative overflow-hidden">
+        <!-- 背景网格 -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute inset-0" style="background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20">
+            <div class="inline-block px-6 py-3 bg-tech-cyan/20 border border-tech-cyan/30 rounded-full mb-8">
+              <span class="text-tech-purple text-sm font-medium uppercase tracking-wider">Career Journey</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">
+              成长<span class="text-tech-cyan">历程</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-tech-cyan to-tech-purple mx-auto"></div>
+          </div>
+          
+          <!-- 时间线 -->
+          <div class="relative">
+            <!-- 中央时间线 -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-tech-purple via-tech-cyan to-tech-purple"></div>
+            
+            <div class="space-y-16">
+              <!-- 当前工作 - 右侧 -->
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8 text-right">
+                  <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
+                    <div class="flex items-center justify-end mb-4">
+                      <div class="text-right mr-4">
+                        <h3 class="text-xl font-bold text-white">上海有个机器人有限公司</h3>
+                        <p class="text-tech-cyan font-semibold">SLAM算法工程师</p>
+                      </div>
+                      <div class="w-12 h-12 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-white"></i>
+                      </div>
+                    </div>
+                    <div class="text-sm text-tech-purple font-semibold mb-3">2023.03 - 至今</div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                      负责机器人SLAM算法研发与优化，多传感器融合方案设计与实现，专注于提升定位精度和系统稳定性
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-4 justify-end">
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">SLAM</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">传感器融合</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">算法优化</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 中央节点 -->
+                <div class="w-8 h-8 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
+                  <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                </div>
+                
+                <div class="w-1/2 pl-8"></div>
+              </div>
+              
+              <!-- 前一份工作 - 左侧 -->
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8"></div>
+                
+                <!-- 中央节点 -->
+                <div class="w-8 h-8 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
+                  <div class="w-3 h-3 bg-white rounded-full"></div>
+                </div>
+                
+                <div class="w-1/2 pl-8">
+                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
+                    <div class="flex items-center mb-4">
+                      <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-cube text-white"></i>
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-white">磅客策（上海）机器人有限公司</h3>
+                        <p class="text-tech-cyan font-semibold">3D算法工程师</p>
+                      </div>
+                    </div>
+                    <div class="text-sm text-tech-cyan font-semibold mb-3">2022.05 - 2023.03</div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                      参与3D视觉算法开发，负责点云处理与环境建模相关工作，积累了丰富的三维重建经验
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">3D视觉</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">点云处理</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">环境建模</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 博士学位 - 右侧 -->
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8 text-right">
+                  <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
+                    <div class="flex items-center justify-end mb-4">
+                      <div class="text-right mr-4">
+                        <h3 class="text-xl font-bold text-white">上海交通大学</h3>
+                        <p class="text-tech-purple font-semibold">物理与天文学院 - 博士</p>
+                      </div>
+                      <div class="w-12 h-12 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                      </div>
+                    </div>
+                    <div class="text-sm text-tech-purple font-semibold mb-3">2016.09 - 2022.06</div>
+                    <div class="text-gray-300 text-sm space-y-2">
+                      <p>• 荣誉奖项: 海外校友博士生奖学金 (2019)</p>
+                      <p>• 主要科研方向：星系和暗物质晕的统计性质</p>
+                      <p>• 指导老师：景益鹏 (院士)，杨小虎 (杰出青年)</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4 justify-end">
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">物理学</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">数据分析</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">算法研究</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 中央节点 -->
+                <div class="w-8 h-8 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
+                  <div class="w-3 h-3 bg-white rounded-full"></div>
+                </div>
+                
+                <div class="w-1/2 pl-8"></div>
+              </div>
+              
+              <!-- 本科学位 - 左侧 -->
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8"></div>
+                
+                <!-- 中央节点 -->
+                <div class="w-8 h-8 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
+                  <div class="w-3 h-3 bg-white rounded-full"></div>
+                </div>
+                
+                <div class="w-1/2 pl-8">
+                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
+                    <div class="flex items-center mb-4">
+                      <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-university text-white"></i>
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-white">中国科学技术大学</h3>
+                        <p class="text-tech-cyan font-semibold">物理学院 - 本科</p>
+                      </div>
+                    </div>
+                    <div class="text-sm text-tech-cyan font-semibold mb-3">2012.09 - 2016.06</div>
+                    <div class="text-gray-300 text-sm space-y-2">
+                      <p>• 荣誉奖项：优秀学生奖银奖 (2015), 优秀新生奖铜奖 (2012)</p>
+                      <p>• 核心课程：数学基础、物理理论、编程基础、数值方法等</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">数学物理</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">编程基础</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">理论学习</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 技能部分 -->
+      <section id="skills" class="py-24 bg-tech-gray/30 relative overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0 particle-bg opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20">
+            <div class="inline-block px-6 py-3 bg-tech-purple/20 border border-tech-purple/30 rounded-full mb-8">
+              <span class="text-tech-cyan text-sm font-medium uppercase tracking-wider">Tech Stack</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">
+              技术<span class="text-tech-purple">栈</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-tech-purple to-tech-cyan mx-auto"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- 编程技能 -->
+            <div class="tech-card rounded-2xl p-8 tech-border">
+              <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-4">
+                  <i class="fas fa-code text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">编程技能</h3>
+              </div>
+              <div class="grid grid-cols-4 gap-4">
+                <div class="text-center group cursor-pointer">
+                  <div class="w-16 h-16 bg-tech-purple/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-purple/30 transition-colors">
+                    <span class="text-tech-purple font-bold text-lg">C</span>
+                  </div>
+                  <span class="text-xs text-gray-400">C语言</span>
+                </div>
+                <div class="text-center group cursor-pointer">
+                  <div class="w-16 h-16 bg-tech-cyan/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-cyan/30 transition-colors">
+                    <span class="text-tech-cyan font-bold text-sm">C++</span>
+                  </div>
+                  <span class="text-xs text-gray-400">C++</span>
+                </div>
+                <div class="text-center group cursor-pointer">
+                  <div class="w-16 h-16 bg-tech-purple/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-purple/30 transition-colors">
+                    <i class="fab fa-python text-tech-purple text-xl"></i>
+                  </div>
+                  <span class="text-xs text-gray-400">Python</span>
+                </div>
+                <div class="text-center group cursor-pointer">
+                  <div class="w-16 h-16 bg-tech-cyan/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-cyan/30 transition-colors">
+                    <span class="text-tech-cyan font-bold text-sm">ROS</span>
+                  </div>
+                  <span class="text-xs text-gray-400">机器人系统</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLAM算法 -->
+            <div class="tech-card rounded-2xl p-8 tech-border">
+              <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-xl flex items-center justify-center mr-4">
+                  <i class="fas fa-route text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">SLAM算法</h3>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
+                  <span class="text-sm">VINS-MONO、Cartographer框架精通</span>
+                </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
+                  <span class="text-sm">相机标定及IMU联合标定</span>
+                </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
+                  <span class="text-sm">鱼眼相机模型(KB、MEI)</span>
+                </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
+                  <span class="text-sm">多传感器融合预积分模型</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 机器人技术 -->
+            <div class="tech-card rounded-2xl p-8 tech-border">
+              <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-4">
+                  <i class="fas fa-robot text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">机器人技术</h3>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="text-center p-4 bg-tech-purple/10 rounded-lg">
+                  <i class="fas fa-project-diagram text-tech-purple text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">路径规划</div>
+                </div>
+                <div class="text-center p-4 bg-tech-cyan/10 rounded-lg">
+                  <i class="fas fa-microchip text-tech-cyan text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">硬件开发</div>
+                </div>
+                <div class="text-center p-4 bg-tech-purple/10 rounded-lg">
+                  <i class="fas fa-eye text-tech-purple text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">3D视觉</div>
+                </div>
+                <div class="text-center p-4 bg-tech-cyan/10 rounded-lg">
+                  <i class="fas fa-brain text-tech-cyan text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">深度学习</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 算法与工程能力 -->
+            <div class="tech-card rounded-2xl p-8 tech-border">
+              <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-xl flex items-center justify-center mr-4">
+                  <i class="fas fa-cogs text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">工程能力</h3>
+              </div>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300 text-sm">数据结构与算法</span>
+                  <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300 text-sm">多线程编程</span>
+                  <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300 text-sm">Docker/交叉编译</span>
+                  <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300 text-sm">YOLO深度学习</span>
+                  <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
+                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 学术论文部分 -->
+      <section id="publications" class="py-24 bg-tech-dark relative overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0">
+          <div class="absolute top-20 left-20 w-64 h-64 border border-tech-purple/20 rounded-full animate-pulse-slow"></div>
+          <div class="absolute bottom-20 right-20 w-48 h-48 border border-tech-cyan/20 rounded-full animate-float"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20">
+            <div class="inline-block px-6 py-3 bg-tech-cyan/20 border border-tech-cyan/30 rounded-full mb-8">
+              <span class="text-tech-purple text-sm font-medium uppercase tracking-wider">Research</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">
+              学术<span class="text-tech-cyan">成果</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-tech-cyan to-tech-purple mx-auto"></div>
+          </div>
+          
+          <div class="space-y-8">
+            <!-- 论文1 -->
+            <div class="tech-card rounded-2xl p-8 tech-border group hover:scale-105 transition-transform duration-300">
+              <div class="flex items-start space-x-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-file-alt text-white text-xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-tech-cyan transition-colors">
+                    Accurate Modeling of the Projected Galaxy Clustering in Photometric Surveys. I. Tests with Mock Catalogs
+                  </h3>
+                  <p class="text-tech-purple font-semibold mb-3">Wang, Z., Xu, H., Yang, X., et al.</p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <span class="text-gray-400 text-sm">The Astrophysical Journal, 879, 71 (2019)</span>
+                    <span class="px-3 py-1 bg-gradient-to-r from-green-500/20 to-green-400/20 border border-green-400/30 text-green-400 rounded-full text-sm font-semibold">
+                      IF: 5.5
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 论文2 -->
+            <div class="tech-card rounded-2xl p-8 tech-border group hover:scale-105 transition-transform duration-300">
+              <div class="flex items-start space-x-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-file-alt text-white text-xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-tech-purple transition-colors">
+                    A Large Massive Quiescent Galaxy Sample at z ~ 1.2
+                  </h3>
+                  <p class="text-tech-cyan font-semibold mb-3">Xu, H., Dai, Y. S., Huang, J.-S., Wang, Z., et al.</p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <span class="text-gray-400 text-sm">The Astrophysical Journal, 905, 103 (2020)</span>
+                    <span class="px-3 py-1 bg-gradient-to-r from-green-500/20 to-green-400/20 border border-green-400/30 text-green-400 rounded-full text-sm font-semibold">
+                      IF: 5.5
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 论文3 -->
+            <div class="tech-card rounded-2xl p-8 tech-border group hover:scale-105 transition-transform duration-300">
+              <div class="flex items-start space-x-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-file-alt text-white text-xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-tech-cyan transition-colors">
+                    The clustering of galaxies in the DESI imaging legacy surveys DR8: I. the luminosity and color dependent intrinsic clustering
+                  </h3>
+                  <p class="text-tech-purple font-semibold mb-3">Wang, Z., Xu, H., Yang, X., et al.</p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <span class="text-gray-400 text-sm">SCIENCE CHINA Physics, Mechanics & Astronomy</span>
+                    <span class="px-3 py-1 bg-gradient-to-r from-green-500/20 to-green-400/20 border border-green-400/30 text-green-400 rounded-full text-sm font-semibold">
+                      IF: 5.1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系方式部分 -->
+      <section id="contact" class="py-24 bg-tech-gray relative overflow-hidden">
+        <!-- 背景动态元素 -->
+        <div class="absolute inset-0">
+          <div class="absolute top-10 left-10 w-32 h-32 border-2 border-tech-purple/30 rotate-45 animate-float"></div>
+          <div class="absolute top-20 right-20 w-24 h-24 border-2 border-tech-cyan/30 rounded-full animate-pulse-slow"></div>
+          <div class="absolute bottom-10 left-1/4 w-16 h-16 bg-tech-purple/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+          <div class="absolute bottom-20 right-1/3 w-20 h-20 border border-tech-cyan/40 rotate-12 animate-pulse-slow" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-20">
+            <div class="inline-block px-6 py-3 bg-tech-purple/20 border border-tech-purple/30 rounded-full mb-8">
+              <span class="text-tech-cyan text-sm font-medium uppercase tracking-wider">Get In Touch</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-8">
+              联系<span class="text-tech-purple">合作</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-tech-purple to-tech-cyan mx-auto mb-8"></div>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              如果您对我的技术背景感兴趣，或有相关项目合作机会，欢迎与我联系
+            </p>
+          </div>
+          
+          <!-- 联系卡片 -->
+          <div class="max-w-4xl mx-auto">
+            <div class="tech-card rounded-3xl p-12 tech-border">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- 联系信息 -->
+                <div class="space-y-8">
+                  <div class="flex items-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
+                      <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-white mb-1">邮箱地址</h3>
+                      <p class="text-tech-cyan">wzyqq@mail.ustc.edu.cn</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
+                      <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-white mb-1">所在城市</h3>
+                      <p class="text-tech-purple">上海市</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-center group cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
+                      <i class="fas fa-briefcase text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-white mb-1">当前状态</h3>
+                      <p class="text-tech-cyan">开放合作机会</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 快速行动 -->
+                <div class="flex flex-col justify-center space-y-6">
+                  <div class="text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">准备开始合作？</h3>
+                    <p class="text-gray-300 mb-8">
+                      让我们一起探索SLAM技术的无限可能
+                    </p>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <a 
+                      href="mailto:wzyqq@mail.ustc.edu.cn" 
+                      class="block w-full px-8 py-4 bg-gradient-to-r from-tech-purple to-tech-cyan text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-center animate-glow"
+                    >
+                      <i class="fas fa-paper-plane mr-2"></i>
+                      发送邮件
+                    </a>
+                    
+                    <button 
+                      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                      class="block w-full px-8 py-4 bg-transparent border-2 border-tech-purple hover:bg-tech-purple/10 text-white font-semibold rounded-xl transition-all duration-300 text-center tech-border"
+                    >
+                      <i class="fas fa-arrow-up mr-2"></i>
+                      返回顶部
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚 -->
+      <footer class="bg-tech-dark border-t border-tech-purple/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <!-- 品牌信息 -->
+            <div>
+              <div class="flex items-center mb-4">
+                <div class="text-2xl font-bold neon-text mr-3">王兆钰</div>
+                <div class="text-sm text-tech-cyan">SLAM Engineer</div>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                专注于机器人SLAM算法与多传感器融合技术，推动智能机器人技术发展。
+              </p>
+            </div>
+            
+            <!-- 快速链接 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">快速导航</h4>
+              <div class="space-y-2">
+                <a href="#home" class="block text-gray-400 hover:text-tech-purple transition-colors text-sm">首页</a>
+                <a href="#about" class="block text-gray-400 hover:text-tech-purple transition-colors text-sm">关于我</a>
+                <a href="#experience" class="block text-gray-400 hover:text-tech-purple transition-colors text-sm">成长历程</a>
+                <a href="#skills" class="block text-gray-400 hover:text-tech-purple transition-colors text-sm">技术栈</a>
+                <a href="#publications" class="block text-gray-400 hover:text-tech-purple transition-colors text-sm">学术成果</a>
+              </div>
+            </div>
+            
+            <!-- 技术标签 -->
+            <div>
+              <h4 class="text-white font-semibold mb-4">核心技术</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">SLAM</span>
+                <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">传感器融合</span>
+                <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">机器人导航</span>
+                <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">3D视觉</span>
+                <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">算法优化</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 底部版权 -->
+          <div class="border-t border-tech-purple/20 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+              <p class="text-gray-400 text-sm">
+                © 2024 王兆钰. All rights reserved. Powered by advanced SLAM technology.
+              </p>
+              <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <div class="w-2 h-2 bg-tech-cyan rounded-full animate-pulse"></div>
+                <span class="text-xs text-gray-500">系统运行正常</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // 平滑滚动到指定区域
+      document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+
+      // 导航栏滚动效果
+      window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+          nav.style.background = 'rgba(15, 23, 42, 0.95)';
+          nav.style.backdropFilter = 'blur(20px)';
+        } else {
+          nav.style.background = 'rgba(15, 23, 42, 0.8)';
+          nav.style.backdropFilter = 'blur(16px)';
+        }
+      });
+
+      // 页面加载动画
+      window.addEventListener('load', function() {
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.8s ease-out';
+        
+        setTimeout(() => {
+          document.body.style.opacity = '1';
+          document.body.style.transform = 'translateY(0)';
+        }, 100);
+      });
+
+      // 添加鼠标跟踪效果
+      document.addEventListener('mousemove', function(e) {
+        const cursor = document.createElement('div');
+        cursor.className = 'fixed w-1 h-1 bg-tech-cyan rounded-full pointer-events-none z-50';
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursor.style.opacity = '0.6';
+        cursor.style.transition = 'opacity 0.3s ease';
+        
+        document.body.appendChild(cursor);
+        
+        setTimeout(() => {
+          cursor.style.opacity = '0';
+          setTimeout(() => cursor.remove(), 300);
+        }, 100);
+      });
+    </script>
   </body>
 </html>
