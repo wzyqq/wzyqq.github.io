@@ -492,7 +492,7 @@
                     </div>
                     <div class="text-sm text-tech-purple font-semibold mb-3">2025.09 - 至今</div>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                      从事单 ToF 相机、视觉及小 FOV 2D 激光 SLAM 算法开发，包括点云匹配、退化处理与定位评测
+                      从事单ToF SLAM、视觉SLAM及小FOV 2D激光SLAM算法开发
                     </p>
                     <div class="flex flex-wrap gap-2 mt-4 justify-end">
                       <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">单 ToF SLAM</span>
@@ -677,27 +677,27 @@
               <div class="grid grid-cols-4 gap-4">
                 <div class="text-center group cursor-pointer">
                   <div class="w-16 h-16 bg-tech-purple/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-purple/30 transition-colors">
-                    <span class="text-tech-purple font-bold text-lg">C</span>
-                  </div>
-                  <span class="text-xs text-gray-400">C语言</span>
-                </div>
-                <div class="text-center group cursor-pointer">
-                  <div class="w-16 h-16 bg-tech-cyan/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-cyan/30 transition-colors">
-                    <span class="text-tech-cyan font-bold text-sm">C++</span>
+                    <span class="text-tech-purple font-bold text-sm">C++</span>
                   </div>
                   <span class="text-xs text-gray-400">C++</span>
                 </div>
                 <div class="text-center group cursor-pointer">
-                  <div class="w-16 h-16 bg-tech-purple/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-purple/30 transition-colors">
-                    <i class="fab fa-python text-tech-purple text-xl"></i>
+                  <div class="w-16 h-16 bg-tech-cyan/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-cyan/30 transition-colors">
+                    <i class="fab fa-python text-tech-cyan text-xl"></i>
                   </div>
                   <span class="text-xs text-gray-400">Python</span>
+                </div>
+                <div class="text-center group cursor-pointer">
+                  <div class="w-16 h-16 bg-tech-purple/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-purple/30 transition-colors">
+                    <i class="fas fa-terminal text-tech-purple text-xl"></i>
+                  </div>
+                  <span class="text-xs text-gray-400">Shell</span>
                 </div>
                 <div class="text-center group cursor-pointer">
                   <div class="w-16 h-16 bg-tech-cyan/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-tech-cyan/30 transition-colors">
                     <span class="text-tech-cyan font-bold text-sm">ROS</span>
                   </div>
-                  <span class="text-xs text-gray-400">机器人系统</span>
+                  <span class="text-xs text-gray-400">ROS</span>
                 </div>
               </div>
             </div>
@@ -713,19 +713,19 @@
               <div class="space-y-4">
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">VINS-Mono、ORB-SLAM3、Fast-LIO、Cartographer</span>
+                  <span class="text-sm">VINS-Mono、Fast-LIO2、Cartographer</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
-                  <span class="text-sm">相机标定及IMU联合标定</span>
+                  <span class="text-sm">相机标定、相机—IMU 联合标定与针孔、KB、MEI 相机模型</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">针孔、KB 与 MEI 相机模型</span>
+                  <span class="text-sm">IMU 预积分、轮式里程计运动模型与状态估计</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
-                  <span class="text-sm">视觉惯性里程计、激光扫描匹配与多传感器融合</span>
+                  <span class="text-sm">惯性、视觉与激光里程计，多传感器融合</span>
                 </div>
               </div>
             </div>
@@ -740,16 +740,16 @@
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <div class="text-center p-4 bg-tech-purple/10 rounded-lg">
-                  <i class="fas fa-project-diagram text-tech-purple text-xl mb-2"></i>
-                  <div class="text-xs text-gray-300">路径规划</div>
+                  <i class="fas fa-robot text-tech-purple text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">机械臂</div>
                 </div>
                 <div class="text-center p-4 bg-tech-cyan/10 rounded-lg">
-                  <i class="fas fa-microchip text-tech-cyan text-xl mb-2"></i>
-                  <div class="text-xs text-gray-300">硬件开发</div>
+                  <i class="fas fa-route text-tech-cyan text-xl mb-2"></i>
+                  <div class="text-xs text-gray-300">SLAM</div>
                 </div>
                 <div class="text-center p-4 bg-tech-purple/10 rounded-lg">
                   <i class="fas fa-eye text-tech-purple text-xl mb-2"></i>
-                  <div class="text-xs text-gray-300">3D视觉</div>
+                  <div class="text-xs text-gray-300">3D视觉与导航定位</div>
                 </div>
                 <div class="text-center p-4 bg-tech-cyan/10 rounded-lg">
                   <i class="fas fa-brain text-tech-cyan text-xl mb-2"></i>
@@ -769,19 +769,15 @@
               <div class="space-y-4">
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
-                  <span class="text-sm">多线程编程与 ROS 系统开发</span>
+                  <span class="text-sm">多线程编程、ROS</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">RK3588 等嵌入式平台部署</span>
+                  <span class="text-sm">Git 版本管理</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
-                  <span class="text-sm">Docker、Conan 与交叉编译</span>
-                </div>
-                <div class="flex items-center text-gray-300">
-                  <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">轨迹对齐、误差计算与自动化评测</span>
+                  <span class="text-sm">Docker、交叉编译与 RK3588 等嵌入式平台部署</span>
                 </div>
               </div>
             </div>
