@@ -176,6 +176,44 @@
       ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(135deg, #4F46E5, #0891B2);
       }
+
+      @media (max-width: 767px) {
+        .timeline-line {
+          left: 1rem;
+          transform: none;
+        }
+
+        .timeline-item {
+          display: block;
+          position: relative;
+          padding-left: 3rem;
+        }
+
+        .timeline-item > .w-1\/2 {
+          width: 100%;
+          padding-left: 0;
+          padding-right: 0;
+          text-align: left;
+        }
+
+        .timeline-item > .w-1\/2:empty {
+          display: none;
+        }
+
+        .timeline-item > .w-8 {
+          position: absolute;
+          top: 1.5rem;
+          left: 0;
+        }
+
+        .timeline-item .justify-end {
+          justify-content: flex-start;
+        }
+
+        .timeline-item .text-right {
+          text-align: left;
+        }
+      }
     </style>
   </head>
   <body class="font-inter">
@@ -234,7 +272,7 @@
               <span class="neon-text">王兆钰</span>
             </h1>
             <div class="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
-              机器人<span class="text-tech-cyan">导航定位</span>算法专家
+              机器人<span class="text-tech-cyan">SLAM</span>算法工程师
             </div>
           </div>
           
@@ -244,23 +282,23 @@
               上海交通大学<span class="text-tech-purple font-semibold">物理与天文学院博士</span>
             </p>
             <p class="text-lg text-gray-400 leading-relaxed">
-              专注于机器人SLAM算法与多传感器融合技术，拥有丰富的算法研发与工程实践经验
+              从事视觉与激光 SLAM、状态估计及机器人定位算法开发
             </p>
           </div>
           
           <!-- 技术标签 -->
           <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in" style="animation-delay: 0.6s;">
             <span class="px-4 py-2 bg-tech-purple/20 border border-tech-purple/40 rounded-full text-tech-purple text-sm font-medium">
-              VINS-MONO
+              视觉 SLAM
             </span>
             <span class="px-4 py-2 bg-tech-cyan/20 border border-tech-cyan/40 rounded-full text-tech-cyan text-sm font-medium">
-              Cartographer
+              激光 SLAM
             </span>
             <span class="px-4 py-2 bg-tech-purple/20 border border-tech-purple/40 rounded-full text-tech-purple text-sm font-medium">
               多传感器融合
             </span>
             <span class="px-4 py-2 bg-tech-cyan/20 border border-tech-cyan/40 rounded-full text-tech-cyan text-sm font-medium">
-              ROS开发
+              状态估计
             </span>
           </div>
           
@@ -272,7 +310,7 @@
             >
               <span class="flex items-center justify-center">
                 <i class="fas fa-rocket mr-2"></i>
-                探索我的技术世界
+                了解我的经历
               </span>
             </a>
             <a 
@@ -281,7 +319,7 @@
             >
               <span class="flex items-center justify-center">
                 <i class="fas fa-envelope mr-2"></i>
-                联系合作
+                联系我
               </span>
             </a>
           </div>
@@ -325,10 +363,10 @@
                   <h3 class="text-2xl font-bold text-white">个人简介</h3>
                 </div>
                 <p class="text-gray-300 leading-relaxed mb-6">
-                  我是王兆钰，一名专注于<span class="text-tech-cyan font-semibold">SLAM算法研发</span>的工程师。拥有上海交通大学物理与天文学院博士学位，在机器人导航与定位、多传感器融合等领域有着深入的研究和丰富的实践经验。
+                  我是王兆钰，一名从事<span class="text-tech-cyan font-semibold">SLAM 算法开发</span>的工程师。毕业于上海交通大学物理与天文学院，目前主要从事视觉与激光 SLAM、状态估计及机器人定位相关工作。
                 </p>
                 <p class="text-gray-300 leading-relaxed">
-                  我热衷于将前沿的理论研究转化为实际可用的工程解决方案，致力于推动<span class="text-tech-purple font-semibold">机器人技术</span>在各个领域的应用和发展。
+                  工作内容涵盖算法开发、定位系统调试、评测工具构建以及<span class="text-tech-purple font-semibold">嵌入式平台部署</span>。
                 </p>
               </div>
               
@@ -373,10 +411,6 @@
                     <i class="fas fa-envelope mr-4 text-tech-cyan"></i>
                     <span>wzyqq@mail.ustc.edu.cn</span>
                   </div>
-                  <div class="flex items-center text-gray-300">
-                    <i class="fas fa-map-marker-alt mr-4 text-tech-purple"></i>
-                    <span>上海市</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -403,19 +437,15 @@
                 </div>
               </div>
               
-              <!-- 成就统计 -->
-              <div class="grid grid-cols-3 gap-6">
+              <!-- 简要信息 -->
+              <div class="grid grid-cols-2 gap-6">
                 <div class="tech-card rounded-xl p-6 text-center">
-                  <div class="text-3xl font-bold text-tech-purple mb-2">6+</div>
-                  <div class="text-gray-400 text-sm">年工程经验</div>
+                  <div class="text-3xl font-bold text-tech-purple mb-2">4+</div>
+                  <div class="text-gray-400 text-sm">年行业经验</div>
                 </div>
                 <div class="tech-card rounded-xl p-6 text-center">
-                  <div class="text-3xl font-bold text-tech-cyan mb-2">3+</div>
+                  <div class="text-3xl font-bold text-tech-cyan mb-2">3</div>
                   <div class="text-gray-400 text-sm">学术论文</div>
-                </div>
-                <div class="tech-card rounded-xl p-6 text-center">
-                  <div class="text-3xl font-bold text-tech-purple mb-2">10+</div>
-                  <div class="text-gray-400 text-sm">项目经验</div>
                 </div>
               </div>
             </div>
@@ -444,44 +474,77 @@
           <!-- 时间线 -->
           <div class="relative">
             <!-- 中央时间线 -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-tech-purple via-tech-cyan to-tech-purple"></div>
+            <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-tech-purple via-tech-cyan to-tech-purple"></div>
             
             <div class="space-y-16">
               <!-- 当前工作 - 右侧 -->
-              <div class="flex items-center">
+              <div class="timeline-item flex items-center">
                 <div class="w-1/2 pr-8 text-right">
                   <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
                     <div class="flex items-center justify-end mb-4">
                       <div class="text-right mr-4">
-                        <h3 class="text-xl font-bold text-white">上海有个机器人有限公司</h3>
+                        <h3 class="text-xl font-bold text-white">追觅科技</h3>
                         <p class="text-tech-cyan font-semibold">SLAM算法工程师</p>
                       </div>
                       <div class="w-12 h-12 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full flex items-center justify-center">
                         <i class="fas fa-robot text-white"></i>
                       </div>
                     </div>
-                    <div class="text-sm text-tech-purple font-semibold mb-3">2023.03 - 至今</div>
+                    <div class="text-sm text-tech-purple font-semibold mb-3">2025.09 - 至今</div>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                      负责机器人SLAM算法研发与优化，多传感器融合方案设计与实现，专注于提升定位精度和系统稳定性
+                      从事单 ToF 相机、视觉及小 FOV 2D 激光 SLAM 算法开发，包括点云匹配、退化处理与定位评测
                     </p>
                     <div class="flex flex-wrap gap-2 mt-4 justify-end">
-                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">SLAM</span>
-                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">传感器融合</span>
-                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">算法优化</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">单 ToF SLAM</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">视觉 SLAM</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">激光 SLAM</span>
                     </div>
                   </div>
                 </div>
-                
+
                 <!-- 中央节点 -->
                 <div class="w-8 h-8 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
                   <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
                 </div>
-                
+
                 <div class="w-1/2 pl-8"></div>
+              </div>
+
+              <!-- 上海有个机器人 - 左侧 -->
+              <div class="timeline-item flex items-center">
+                <div class="w-1/2 pr-8"></div>
+
+                <!-- 中央节点 -->
+                <div class="w-8 h-8 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full border-4 border-tech-dark flex items-center justify-center z-10">
+                  <div class="w-3 h-3 bg-white rounded-full"></div>
+                </div>
+
+                <div class="w-1/2 pl-8">
+                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
+                    <div class="flex items-center mb-4">
+                      <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-robot text-white"></i>
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-white">上海有个机器人有限公司</h3>
+                        <p class="text-tech-cyan font-semibold">SLAM算法工程师</p>
+                      </div>
+                    </div>
+                    <div class="text-sm text-tech-cyan font-semibold mb-3">2023.03 - 2025.09</div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                      从事 VIO、2D/3D 激光定位和机器人感知算法开发，包括多传感器融合与嵌入式部署
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">VIO</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">激光定位</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">多传感器融合</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               
               <!-- 前一份工作 - 左侧 -->
-              <div class="flex items-center">
+              <div class="timeline-item flex flex-row-reverse items-center">
                 <div class="w-1/2 pr-8"></div>
                 
                 <!-- 中央节点 -->
@@ -489,8 +552,8 @@
                   <div class="w-3 h-3 bg-white rounded-full"></div>
                 </div>
                 
-                <div class="w-1/2 pl-8">
-                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
+                <div class="w-1/2 pr-8">
+                  <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
                     <div class="flex items-center mb-4">
                       <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full flex items-center justify-center mr-4">
                         <i class="fas fa-cube text-white"></i>
@@ -502,21 +565,21 @@
                     </div>
                     <div class="text-sm text-tech-cyan font-semibold mb-3">2022.05 - 2023.03</div>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                      参与3D视觉算法开发，负责点云处理与环境建模相关工作，积累了丰富的三维重建经验
+                      从事双目视觉定位、标签检测、相机标定与手眼标定相关工作
                     </p>
                     <div class="flex flex-wrap gap-2 mt-4">
                       <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">3D视觉</span>
-                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">点云处理</span>
-                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">环境建模</span>
+                      <span class="px-2 py-1 bg-tech-purple/20 text-tech-purple text-xs rounded">双目定位</span>
+                      <span class="px-2 py-1 bg-tech-cyan/20 text-tech-cyan text-xs rounded">手眼标定</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               <!-- 博士学位 - 右侧 -->
-              <div class="flex items-center">
-                <div class="w-1/2 pr-8 text-right">
-                  <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
+              <div class="timeline-item flex flex-row-reverse items-center">
+                <div class="w-1/2 pl-8 text-right">
+                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
                     <div class="flex items-center justify-end mb-4">
                       <div class="text-right mr-4">
                         <h3 class="text-xl font-bold text-white">上海交通大学</h3>
@@ -549,7 +612,7 @@
               </div>
               
               <!-- 本科学位 - 左侧 -->
-              <div class="flex items-center">
+              <div class="timeline-item flex flex-row-reverse items-center">
                 <div class="w-1/2 pr-8"></div>
                 
                 <!-- 中央节点 -->
@@ -557,8 +620,8 @@
                   <div class="w-3 h-3 bg-white rounded-full"></div>
                 </div>
                 
-                <div class="w-1/2 pl-8">
-                  <div class="tech-card rounded-2xl p-8 mr-auto max-w-lg tech-border">
+                <div class="w-1/2 pr-8">
+                  <div class="tech-card rounded-2xl p-8 ml-auto max-w-lg tech-border">
                     <div class="flex items-center mb-4">
                       <div class="w-12 h-12 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-full flex items-center justify-center mr-4">
                         <i class="fas fa-university text-white"></i>
@@ -650,7 +713,7 @@
               <div class="space-y-4">
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">VINS-MONO、Cartographer框架精通</span>
+                  <span class="text-sm">VINS-Mono、ORB-SLAM3、Fast-LIO、Cartographer</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
@@ -658,11 +721,11 @@
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
-                  <span class="text-sm">鱼眼相机模型(KB、MEI)</span>
+                  <span class="text-sm">针孔、KB 与 MEI 相机模型</span>
                 </div>
                 <div class="flex items-center text-gray-300">
                   <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
-                  <span class="text-sm">多传感器融合预积分模型</span>
+                  <span class="text-sm">视觉惯性里程计、激光扫描匹配与多传感器融合</span>
                 </div>
               </div>
             </div>
@@ -703,46 +766,22 @@
                 </div>
                 <h3 class="text-2xl font-bold text-white">工程能力</h3>
               </div>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-300 text-sm">数据结构与算法</span>
-                  <div class="flex space-x-1">
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                  </div>
+              <div class="space-y-4">
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
+                  <span class="text-sm">多线程编程与 ROS 系统开发</span>
                 </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-300 text-sm">多线程编程</span>
-                  <div class="flex space-x-1">
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                  </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
+                  <span class="text-sm">RK3588 等嵌入式平台部署</span>
                 </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-300 text-sm">Docker/交叉编译</span>
-                  <div class="flex space-x-1">
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-purple rounded-full"></div>
-                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                  </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-purple rounded-full mr-3"></div>
+                  <span class="text-sm">Docker、Conan 与交叉编译</span>
                 </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-300 text-sm">YOLO深度学习</span>
-                  <div class="flex space-x-1">
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-tech-cyan rounded-full"></div>
-                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                  </div>
+                <div class="flex items-center text-gray-300">
+                  <div class="w-2 h-2 bg-tech-cyan rounded-full mr-3"></div>
+                  <span class="text-sm">轨迹对齐、误差计算与自动化评测</span>
                 </div>
               </div>
             </div>
@@ -852,79 +891,29 @@
               <span class="text-tech-cyan text-sm font-medium uppercase tracking-wider">Get In Touch</span>
             </div>
             <h2 class="text-4xl md:text-6xl font-black text-white mb-8">
-              联系<span class="text-tech-purple">合作</span>
+              联系<span class="text-tech-purple">方式</span>
             </h2>
             <div class="w-24 h-1 bg-gradient-to-r from-tech-purple to-tech-cyan mx-auto mb-8"></div>
             <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              如果您对我的技术背景感兴趣，或有相关项目合作机会，欢迎与我联系
+              可以通过邮箱与我联系
             </p>
           </div>
           
           <!-- 联系卡片 -->
-          <div class="max-w-4xl mx-auto">
-            <div class="tech-card rounded-3xl p-12 tech-border">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- 联系信息 -->
-                <div class="space-y-8">
-                  <div class="flex items-center group cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-envelope text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white mb-1">邮箱地址</h3>
-                      <p class="text-tech-cyan">wzyqq@mail.ustc.edu.cn</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-center group cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-r from-tech-cyan to-tech-purple rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-map-marker-alt text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white mb-1">所在城市</h3>
-                      <p class="text-tech-purple">上海市</p>
-                    </div>
-                  </div>
-                  
-                  <div class="flex items-center group cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-briefcase text-white text-xl"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-semibold text-white mb-1">当前状态</h3>
-                      <p class="text-tech-cyan">开放合作机会</p>
-                    </div>
-                  </div>
+          <div class="max-w-2xl mx-auto">
+            <div class="tech-card rounded-3xl p-8 sm:p-12 tech-border">
+              <a
+                href="mailto:wzyqq@mail.ustc.edu.cn"
+                class="flex flex-col sm:flex-row items-center justify-center gap-5 group"
+              >
+                <div class="w-16 h-16 bg-gradient-to-r from-tech-purple to-tech-cyan rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i class="fas fa-envelope text-white text-xl"></i>
                 </div>
-                
-                <!-- 快速行动 -->
-                <div class="flex flex-col justify-center space-y-6">
-                  <div class="text-center">
-                    <h3 class="text-2xl font-bold text-white mb-4">准备开始合作？</h3>
-                    <p class="text-gray-300 mb-8">
-                      让我们一起探索SLAM技术的无限可能
-                    </p>
-                  </div>
-                  
-                  <div class="space-y-4">
-                    <a 
-                      href="mailto:wzyqq@mail.ustc.edu.cn" 
-                      class="block w-full px-8 py-4 bg-gradient-to-r from-tech-purple to-tech-cyan text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-center animate-glow"
-                    >
-                      <i class="fas fa-paper-plane mr-2"></i>
-                      发送邮件
-                    </a>
-                    
-                    <button 
-                      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-                      class="block w-full px-8 py-4 bg-transparent border-2 border-tech-purple hover:bg-tech-purple/10 text-white font-semibold rounded-xl transition-all duration-300 text-center tech-border"
-                    >
-                      <i class="fas fa-arrow-up mr-2"></i>
-                      返回顶部
-                    </button>
-                  </div>
+                <div class="text-center sm:text-left">
+                  <h3 class="text-lg font-semibold text-white mb-1">邮箱</h3>
+                  <p class="text-tech-cyan break-all">wzyqq@mail.ustc.edu.cn</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -941,7 +930,7 @@
                 <div class="text-sm text-tech-cyan">SLAM Engineer</div>
               </div>
               <p class="text-gray-400 text-sm leading-relaxed">
-                专注于机器人SLAM算法与多传感器融合技术，推动智能机器人技术发展。
+                从事视觉与激光 SLAM、多传感器融合及机器人定位算法开发。
               </p>
             </div>
             
@@ -974,11 +963,11 @@
           <div class="border-t border-tech-purple/20 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
               <p class="text-gray-400 text-sm">
-                © 2024 王兆钰. All rights reserved. Powered by advanced SLAM technology.
+                © 2026 王兆钰. All rights reserved.
               </p>
               <div class="flex items-center space-x-4 mt-4 md:mt-0">
                 <div class="w-2 h-2 bg-tech-cyan rounded-full animate-pulse"></div>
-                <span class="text-xs text-gray-500">系统运行正常</span>
+                <span class="text-xs text-gray-500">个人主页</span>
               </div>
             </div>
           </div>
